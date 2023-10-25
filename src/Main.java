@@ -2,11 +2,17 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//----------------------------------------------------------------------------------------------------------------------
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int indtastning = scanner.nextInt();
+        System.out.println("Goddag, hvilken handling ønsker du?");
+        System.out.println("Tast 1 for oprettelse af aftale");
+        System.out.println("Tast 2 for Ændring af aftale");
+        System.out.println("Tast 3 for at slette aftale");
+        System.out.println("Tast 4 for at se ledige tider");
+        System.out.println("Tast 5 for at se tid og salgs historik");
 
         switch(indtastning){
             case 1:
@@ -26,17 +32,15 @@ public class Main {
                 break;
 
 
-
-
         }
     }
 }
-
+//----------------------------------------------------------------------------------------------------------------------
 class aftale{
     String navn;
     double pris;
 }
-
+//----------------------------------------------------------------------------------------------------------------------
 class kalender{
     ArrayList<aftale> aftaler = new ArrayList <aftale>();
 }
