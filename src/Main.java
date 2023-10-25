@@ -13,8 +13,9 @@ aftale ny = new aftale(new Date(123,9,25,15,30),"Bjorn",200);
         System.out.println("Tast 1 for oprettelse af aftale");
         System.out.println("Tast 2 for Ændring af aftale");
         System.out.println("Tast 3 for at slette aftale");
-        System.out.println("Tast 4 for at se ledige tider");
-        System.out.println("Tast 5 for at se tid og salgs historik");
+        System.out.println("Tast 4 for at se aftalte tider");
+        System.out.println("Tast 5 for at se ledige tider");
+        System.out.println("Tast 6 for at se tid og salgs historik");
 
         System.out.println(ny);
         Scanner scanner = new Scanner(System.in);
@@ -30,10 +31,13 @@ aftale ny = new aftale(new Date(123,9,25,15,30),"Bjorn",200);
                 // slet aftale
                 break;
             case 4:
-                // Se kalender og ledige tider
+                // Se kalender og aftalte tider
                 break;
             case 5:
-                // Se kalender over gamle tider
+                // Se kalender over ledige tider
+                break;
+            case 6:
+                // Se kalender over tid og salgs historik
                 break;
 
 
