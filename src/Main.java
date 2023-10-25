@@ -50,10 +50,6 @@ class aftale extends kunde{
         this.nyAftale = nyAftale;
 
     }
-    void opretAftale(){
-
-        }
-
     @Override
     public String toString() {
         return nyAftale+navn+pris;
