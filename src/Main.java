@@ -50,10 +50,16 @@ class aftale extends kunde{
         this.nyAftale = nyAftale;
 
     }
-    opretAftale(){
-        return nyAftale;
+    void opretAftale(){
+
+        }
+
+    @Override
+    public String toString() {
+        return nyAftale+navn+pris;
     }
-    }
+}
+
 
 //----------------------------------------------------------------------------------------------------------------------
 class kalender{
