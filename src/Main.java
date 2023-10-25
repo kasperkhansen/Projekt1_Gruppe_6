@@ -42,13 +42,19 @@ public class Main {
 class aftale extends kunde{
     String navn;
     double pris;
+    Date nyAftale = new Date();
 
-    opretDato(){
-        Date nyAftale;
+    aftale(Date nyAftale, String navn, double pris){
+        this.pris = pris;
+        this.navn = navn;
+        this.nyAftale = nyAftale;
+
+    }
+    opretAftale(){
+        return nyAftale;
     }
     }
 
-}
 //----------------------------------------------------------------------------------------------------------------------
 class kalender{
     ArrayList<aftale> aftaler = new ArrayList <aftale>();
