@@ -1,6 +1,7 @@
 // Husk at skrive til de andre før man pusher
 
 import java.util.ArrayList;//----------------------------------------------------------------------------------------------------------------------
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -41,6 +42,12 @@ public class Main {
 class aftale extends kunde{
     String navn;
     double pris;
+
+    opretDato(){
+        Date nyAftale;
+    }
+    }
+
 }
 //----------------------------------------------------------------------------------------------------------------------
 class kalender{
@@ -51,3 +58,4 @@ class kunde{
     String navn;
     double pris;
 }
+
