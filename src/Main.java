@@ -3,11 +3,10 @@
 import java.util.ArrayList;//----------------------------------------------------------------------------------------------------------------------
 import java.util.Date;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // (23,9,25,15,30)
-        // Bemærk år læg 100 til det normale år
-aftale ny = new aftale(new Date(123,9,25,15,30),"Bjorn",200);
+
         System.out.println("Goddag, hvilken handling ønsker du?");
         System.out.println();
         System.out.println("Tast 1 for oprettelse af aftale");
@@ -16,13 +15,13 @@ aftale ny = new aftale(new Date(123,9,25,15,30),"Bjorn",200);
         System.out.println("Tast 4 for at se aftalte tider");
         System.out.println("Tast 5 for at se ledige tider");
         System.out.println("Tast 6 for at se tid og salgs historik");
+        System.out.println("Tast 7 for at lukke programmet");
 
-        System.out.println(ny);
         Scanner scanner = new Scanner(System.in);
         int indtastning = scanner.nextInt();
         switch(indtastning){
             case 1:
-                // Opret aftale
+                opretAftale();
                 break;
             case 2:
                 // ændre aftale
@@ -39,9 +38,16 @@ aftale ny = new aftale(new Date(123,9,25,15,30),"Bjorn",200);
             case 6:
                 // Se kalender over tid og salgs historik
                 break;
+            case 7:
+                // Se kalender over tid og salgs historik
+                break;
 
 
         }
+    }
+    public static void opretAftale(){
+        Scanner scanner = new Scanner(System.in);
+
     }
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -55,6 +61,8 @@ class aftale{
         this.navn = navn;
         this.pris = pris;
     }
+
+
 
     @Override
     public String toString() {
