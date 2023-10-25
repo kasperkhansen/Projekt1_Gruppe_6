@@ -1,5 +1,8 @@
 // Husk at skrive til de andre før man pusher
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;//----------------------------------------------------------------------------------------------------------------------
 import java.util.Date;
 import java.util.Scanner;
@@ -47,17 +50,34 @@ public class Main {
     }
     public static void opretAftale(){
         Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+        SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
+        Date t;
+        Date tid;
+        try {
+            t = ft.parse(input);
+            input = scanner.next();
+            tid = dt.parse(input);
+            String navn = scanner.next();
+            double pris = scanner.nextDouble();
+            aftale a =new aftale(t, tid, navn, pris );
 
+        } catch (ParseException e) {
+            System.out.println("Unparseable using " + ft);
+        }
     }
 }
 //----------------------------------------------------------------------------------------------------------------------
 class aftale{
-    String navn = "";
-    double pris = 0;
-    Date nyAftale = new Date(23,1,0,12,00);
+    String navn;
+    double pris;
+    Date nyAftale;
+    Date tid;
 
-    aftale(Date nyAftale, String navn, double pris) {
+    public aftale(Date nyAftale, Date tid, String navn, double pris) {
         this.nyAftale = nyAftale;
+        this.tid = tid;
         this.navn = navn;
         this.pris = pris;
     }
