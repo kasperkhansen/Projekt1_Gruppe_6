@@ -56,10 +56,14 @@ public class Main {
         Date t;
         Date tid;
         try {
+            System.out.println("indtast dato (f.eks. 01-10-2023");
             t = ft.parse(input);
             input = scanner.next();
+            System.out.println("Indtast tid (f.eks. 15:00)");
             tid = dt.parse(input);
+            System.out.println("Indtast navn (f.eks. Bjorn");
             String navn = scanner.next();
+            System.out.println("Indtast pris (f.eks. 200");
             double pris = scanner.nextDouble();
             aftale a =new aftale(t, tid, navn, pris );
 
