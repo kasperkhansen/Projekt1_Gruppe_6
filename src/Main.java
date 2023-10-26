@@ -49,9 +49,11 @@ public class Main {
         }
     }
     public static void opretAftale(){
+        System.out.println("Indtast dato (f.eks. 01-10-2023)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
         SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println("Indtast tid (f.eks. 12:30)");
         SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
         Date t;
         Date tid;
@@ -59,7 +61,9 @@ public class Main {
             t = ft.parse(input);
             input = scanner.next();
             tid = dt.parse(input);
+            System.out.println("Indtast navn");
             String navn = scanner.next();
+            System.out.println("Indtast pris");
             double pris = scanner.nextDouble();
             aftale a =new aftale(t, tid, navn, pris );
 
