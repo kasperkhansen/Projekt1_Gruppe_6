@@ -1,12 +1,14 @@
 // Husk at skrive til de andre før man pusher
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;//----------------------------------------------------------------------------------------------------------------------
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-
+//----------------------------------------------------------------------------------------------------------------------
 public class Main {
     public static void main(String[] args) {
 
@@ -84,18 +86,21 @@ class aftale{
         }
     }
 
-
-
     @Override
     public String toString() {
         return nyAftale+navn+pris;
     }
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------
 class kalender{
+    FileWriter Dagskalender = new FileWriter("Dagskalender");
 
+
+
+
+    kalender() throws IOException {
+    }
 }
 
 
@@ -127,6 +132,5 @@ class Tider{
 
 
     }
-
 }
 //----------------------------------------------------------------------------------------------------------------------
