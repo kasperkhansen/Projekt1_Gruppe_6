@@ -20,7 +20,8 @@ public class Main {
             System.out.println("Tast 2 for at slette aftale");
             System.out.println("Tast 3 for at se aftalte tider");
             System.out.println("Tast 4 for at se kunde historik");
-            System.out.println("Tast 5 for at lukke programmet");
+            System.out.println("Tast 5 for at registrere betaling");
+            System.out.println("Tast 6 for at lukke programmet");
             System.out.println();
             System.out.print("Kommando: ");
             int indtastning = scanner.nextInt();
