@@ -24,7 +24,7 @@ public class Main {
             System.out.println();
             System.out.print("Kommando: ");
             int indtastning = scanner.nextInt();
-            if (indtastning == 5) break;
+            if (indtastning == 6) break;
 
             switch(indtastning) {
                 case 1:
@@ -33,7 +33,6 @@ public class Main {
                     break;
 
                 case 2:
-                    // slet aftale
                     System.out.println(Tider.listeMedAftaler);
                     System.out.println("Vælg tid der skal slettes (f.eks. 12:30)");
                     String sletTidString = scanner.next();
@@ -66,6 +65,20 @@ public class Main {
                     // Kundehistorik
                     break;
 
+                case 5:
+                    // registrer betaling
+                    System.out.println("Vælg en aftale for at markere som betalt");
+                    for (int i = 0; i < Tider.listeMedAftaler.size(); i++) {
+                        System.out.println((i + 1) + ". " + Tider.listeMedAftaler.get(i).toString());
+                    }
+                    int betaltIndex = scanner.nextInt();
+                    if (betaltIndex > 0 && betaltIndex <= Tider.listeMedAftaler.size()) {
+                        Tider.listeMedAftaler.get(betaltIndex - 1).setBetalt(true);
+                        System.out.println("Aftale markeret som betalt.");
+                    } else {
+                        System.out.println("Ugyldigt nummer.");
+                    }
+                    break;
                 default:
                     System.out.println("Dette er ikke en mulighed, indtast gyldig værdi\n");
             }
@@ -78,6 +91,7 @@ class aftale{
     String navn;
     double pris;
     Date dato;
+    boolean betalt;
 
     public aftale(Date nyAftale, String navn, double pris) {
         this.dato = nyAftale;
@@ -98,6 +112,16 @@ class aftale{
         System.out.println("Indtast pris");
         this.pris = scanner.nextDouble();
         System.out.println("Aftale registreret.");
+        this.betalt = false;
+
+    }
+
+    public boolean isBetalt() {
+        return betalt;
+    }
+
+    public void setBetalt(boolean betalt) {
+        this.betalt = betalt;
     }
 
     public Date getTime(Scanner scanner) {
@@ -132,15 +156,12 @@ class aftale{
 
     @Override
     public String toString() {
-        return dato+navn+pris;
-    }
-    public static void sletAftale(){
-
+        return dato + " " + navn + " " + pris + " " + (betalt ? "Betalt" : "Ikke Betalt");
     }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-class Tider extends aftale{
+class Tider extends aftale {
 
     public void setNyAftale(Date nyAftale) {
         this.dato = nyAftale;
@@ -150,6 +171,9 @@ class Tider extends aftale{
 
     Tider(Date nyAftale, Date tid, String navn, double pris) {
         super(nyAftale, navn, pris);
+
+
+
     }
 }
 //----------------------------------------------------------------------------------------------------------------------
