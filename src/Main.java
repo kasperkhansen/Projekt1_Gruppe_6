@@ -1,136 +1,133 @@
 // Husk at skrive til de andre før man pusher
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 //----------------------------------------------------------------------------------------------------------------------
 public class Main {
     public static void main(String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        while (true){
+            System.out.println();
+            System.out.println("God dag, Harry, Harriet og Revisor");
+            System.out.println();
+            System.out.println("Tast 1 for at oprette aftale");
+            System.out.println("Tast 2 for at slette aftale");
+            System.out.println("Tast 3 for at se aftalte tider");
+            System.out.println("Tast 4 for at se kunde historik");
+            System.out.println("Tast 5 for at lukke programmet");
+            System.out.println();
+            System.out.print("Kommando: ");
+            int indtastning = scanner.nextInt();
+            if (indtastning == 5) break;
 
-        System.out.println("Goddag, Harry, Harriet og Revisor");
-        System.out.println();
-        System.out.println("Indtast dato (dd-MM-yyyy)");
+            switch(indtastning) {
+                case 1:
+                    Tider.listeMedAftaler.add(new aftale());
+                    // opret aftale
+                    break;
 
+                case 2:
+                    // slet aftale
+                    break;
+                case 3:
+                    // Se aftalte tider
+                    System.out.println(Tider.listeMedAftaler);
+                    break;
+                case 4:
+                    // Kundehistorik
+                    break;
 
-        Scanner scanner = new Scanner(System.in);
-        int indtastning = scanner.nextInt();
-        switch(indtastning){
-            case 1:
-                // Indtast dato
-                break;
-            case 2:
-                aftale.opretAftale();
-              // se tider, opret aftale, slet aftale
-                break;
-            case 3:
-                // slet aftale
-                break;
-            case 4:
-                // Se kalender og aftalte tider
-                break;
-            case 5:
-                // Se kalender over ledige tider
-                break;
-            case 6:
-                // Se kalender over tid og salgs historik
-                break;
-            case 7:
-                // Se kalender over tid og salgs historik
-                break;
-
-
+                default:
+                    System.out.println("Dette er ikke en mulighed, indtast gyldig værdi\n");
+            }
         }
+        System.out.println("Programmet lukker hav en god dag");
     }
-
 }
 //----------------------------------------------------------------------------------------------------------------------
 class aftale{
     String navn;
     double pris;
-    Date nyAftale;
-    Date tid;
+    Date dato;
 
-    public aftale(Date nyAftale, Date tid, String navn, double pris) {
-        this.nyAftale = nyAftale;
-        this.tid = tid;
+    public aftale(Date nyAftale, String navn, double pris) {
+        this.dato = nyAftale;
         this.navn = navn;
         this.pris = pris;
     }
 
-    public static void opretAftale(){
-        System.out.println("Indtast dato (f.eks. 01-10-2023)");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.next();
-        SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println("Indtast tid (f.eks. 12:30)");
-        SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
-        Date t;
-        Date tid;
-        try {
-            t = ft.parse(input);
-            input = scanner.next();
-            tid = dt.parse(input);
-            System.out.println("Indtast navn");
-            String navn = scanner.next();
-            System.out.println("Indtast pris");
-            double pris = scanner.nextDouble();
-            aftale a =new aftale(t, tid, navn, pris );
 
-        } catch (ParseException e) {
-            System.out.println("Unparseable using " + ft);
+    public aftale() {
+        final Scanner scanner = new Scanner(System.in);
+
+        //get date
+        Date date = getDate(scanner);
+        Date tid = getTime(scanner);
+        this.dato = new Date(date.getYear(), date.getMonth(), date.getDate(), tid.getHours(), tid.getMinutes());
+        System.out.println("Indtast navn");
+        this.navn = getInput(scanner);
+        System.out.println("Indtast pris");
+        this.pris = scanner.nextDouble();
+        System.out.println("Aftale registreret.");
+    }
+
+    public Date getTime(Scanner scanner) {
+        Date t = null;
+        try {
+            SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
+            System.out.println("Indtast tid (f.eks. 12:30)");
+            String input = getInput(scanner);
+            t = dt.parse(input);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
+        return t;
+    }
+
+    public Date getDate(Scanner scanner) {
+        Date t = null;
+        try {
+            SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
+            System.out.println("Indtast dato (f.eks. 01-10-2023)");
+            String input = getInput(scanner);
+            t = ft.parse(input);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return t;
+    }
+
+    public String getInput(Scanner scanner) {
+        return scanner.next();
     }
 
     @Override
     public String toString() {
-        return nyAftale+navn+pris;
+        return dato+navn+pris;
+    }
+    public static void sletAftale(){
+
     }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-class kalender{
-    FileWriter Dagskalender = new FileWriter("Dagskalender");
-
-
-
-
-    kalender() throws IOException {
-    }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-class Tider{
-    String navn;
-
-
-    Tider(String navn){
-        this.navn = navn;
-
-        Tider[] klippetider = new Tider[16];
-        klippetider[0] = new Tider("10:00");
-        klippetider[1] = new Tider("10:30");
-        klippetider[2] = new Tider("11:00");
-        klippetider[3] = new Tider("11:30");
-        klippetider[4] = new Tider("12:00");
-        klippetider[5] = new Tider("12:30");
-        klippetider[6] = new Tider("13:00");
-        klippetider[7] = new Tider("13:30");
-        klippetider[8] = new Tider("14:00");
-        klippetider[9] = new Tider("14:30");
-        klippetider[10] = new Tider("15:00");
-        klippetider[11] = new Tider("15:30");
-        klippetider[12] = new Tider("16:00");
-        klippetider[13] = new Tider("16:30");
-        klippetider[14] = new Tider("17:00");
-        klippetider[15] = new Tider("17:30");
-
-
-    }
+class klippeKalender{
 }
 //----------------------------------------------------------------------------------------------------------------------
+class Tider extends aftale{
+
+    public void setNyAftale(Date nyAftale) {
+        this.dato = nyAftale;
+    }
+
+    public static ArrayList<aftale> listeMedAftaler = new ArrayList<aftale>();
+
+    Tider(Date nyAftale, Date tid, String navn, double pris) {
+        super(nyAftale, navn, pris);
+    }
+}
+//-------------
