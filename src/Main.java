@@ -34,6 +34,29 @@ public class Main {
 
                 case 2:
                     // slet aftale
+                    System.out.println(Tider.listeMedAftaler);
+                    System.out.println("Vælg tid der skal slettes (f.eks. 12:30)");
+                    String sletTidString = scanner.next();
+
+                    SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
+                    try {
+                        Date sletTid = dt.parse(sletTidString);
+                        aftale aftaleToRemove = null;
+                        for (aftale a : Tider.listeMedAftaler) {
+                            if (a.dato.getHours() == sletTid.getHours() && a.dato.getMinutes() == sletTid.getMinutes()) {
+                                aftaleToRemove = a;
+                                break;
+                            }
+                        }
+                        if (aftaleToRemove != null) {
+                            Tider.listeMedAftaler.remove(aftaleToRemove);
+                            System.out.println("Aftale slettet.");
+                        } else {
+                            System.out.println("Ingen aftale fundet på denne tid.");
+                        }
+                    } catch (ParseException e) {
+                        System.out.println("Ugyldig tid indtastet.");
+                    }
                     break;
                 case 3:
                     // Se aftalte tider
