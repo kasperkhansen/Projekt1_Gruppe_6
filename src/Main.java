@@ -9,10 +9,12 @@ import java.util.Scanner;
 //----------------------------------------------------------------------------------------------------------------------
 public class Main {
     public static void main(String[] args) {
+        System.out.println();
+        System.out.println("God dag, Harry, Harriet og Revisor");
         final Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println();
-            System.out.println("God dag, Harry, Harriet og Revisor");
+            System.out.println("Vælg ønsket handling!");
             System.out.println();
             System.out.println("Tast 1 for at oprette aftale");
             System.out.println("Tast 2 for at slette aftale");
