@@ -11,79 +11,86 @@ public class Main {
     public static void main(String[] args) {
         System.out.println();
         System.out.println("God dag, Harry, Harriet og Revisor");
+        System.out.println("Indtast venligst adgangskode");
         final Scanner scanner = new Scanner(System.in);
-        while (true){
-            System.out.println();
-            System.out.println("Vælg ønsket handling!");
-            System.out.println();
-            System.out.println("Tast 1 for at oprette aftale");
-            System.out.println("Tast 2 for at slette aftale");
-            System.out.println("Tast 3 for at se aftalte tider");
-            System.out.println("Tast 4 for at se kunde historik");
-            System.out.println("Tast 5 for at registrere betaling");
-            System.out.println("Tast 6 for at lukke programmet");
-            System.out.println();
-            System.out.print("Kommando: ");
-            int indtastning = scanner.nextInt();
-            if (indtastning == 6) break;
-
-            switch(indtastning) {
-                case 1:
-                    Tider.listeMedAftaler.add(new aftale());
-                    // opret aftale
-                    break;
-
-                case 2:
-                    System.out.println(Tider.listeMedAftaler);
-                    System.out.println("Vælg tid der skal slettes (f.eks. 12:30)");
-                    String sletTidString = scanner.next();
-
-                    SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
-                    try {
-                        Date sletTid = dt.parse(sletTidString);
-                        aftale aftaleToRemove = null;
-                        for (aftale a : Tider.listeMedAftaler) {
-                            if (a.dato.getHours() == sletTid.getHours() && a.dato.getMinutes() == sletTid.getMinutes()) {
-                                aftaleToRemove = a;
-                                break;
-                            }
-                        }
-                        if (aftaleToRemove != null) {
-                            Tider.listeMedAftaler.remove(aftaleToRemove);
-                            System.out.println("Aftale slettet.");
-                        } else {
-                            System.out.println("Ingen aftale fundet på denne tid.");
-                        }
-                    } catch (ParseException e) {
-                        System.out.println("Ugyldig tid indtastet.");
-                    }
-                    break;
-                case 3:
-                    // Se aftalte tider
-                    System.out.println(Tider.listeMedAftaler);
-                    break;
-                case 4:
-                    // Kundehistorik
-                    break;
-
-                case 5:
-                    // registrer betaling
-                    System.out.println("Vælg en aftale for at markere som betalt");
-                    for (int i = 0; i < Tider.listeMedAftaler.size(); i++) {
-                        System.out.println((i + 1) + ". " + Tider.listeMedAftaler.get(i).toString());
-                    }
-                    int betaltIndex = scanner.nextInt();
-                    if (betaltIndex > 0 && betaltIndex <= Tider.listeMedAftaler.size()) {
-                        Tider.listeMedAftaler.get(betaltIndex - 1).setBetalt(true);
-                        System.out.println("Aftale markeret som betalt.");
-                    } else {
-                        System.out.println("Ugyldigt nummer.");
-                    }
-                    break;
-                default:
-                    System.out.println("Dette er ikke en mulighed, indtast gyldig værdi\n");
-            }
+        String adgangskode=scanner.nextLine();
+        while (!adgangskode.equals("hairyharry")) {
+            System.out.println("Adgangskode er forkert. Prøv igen");
+            adgangskode=scanner.nextLine();
         }
+        while (adgangskode.equals("hairyharry"))
+            while (true){
+                System.out.println();
+                System.out.println("Vælg ønsket handling!");
+                System.out.println();
+                System.out.println("Tast 1 for at oprette aftale");
+                System.out.println("Tast 2 for at slette aftale");
+                System.out.println("Tast 3 for at se aftalte tider");
+                System.out.println("Tast 4 for at se kunde historik");
+                System.out.println("Tast 5 for at registrere betaling");
+                System.out.println("Tast 6 for at lukke programmet");
+                System.out.println();
+                System.out.print("Kommando: ");
+                int indtastning = scanner.nextInt();
+                if (indtastning == 6) break;
+
+                switch(indtastning) {
+                    case 1:
+                        Tider.listeMedAftaler.add(new aftale());
+                        // opret aftale
+                        break;
+
+                    case 2:
+                        System.out.println(Tider.listeMedAftaler);
+                        System.out.println("Vælg tid der skal slettes (f.eks. 12:30)");
+                        String sletTidString = scanner.next();
+
+                        SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
+                        try {
+                            Date sletTid = dt.parse(sletTidString);
+                            aftale aftaleToRemove = null;
+                            for (aftale a : Tider.listeMedAftaler) {
+                                if (a.dato.getHours() == sletTid.getHours() && a.dato.getMinutes() == sletTid.getMinutes()) {
+                                    aftaleToRemove = a;
+                                    break;
+                                }
+                            }
+                            if (aftaleToRemove != null) {
+                                Tider.listeMedAftaler.remove(aftaleToRemove);
+                                System.out.println("Aftale slettet.");
+                            } else {
+                                System.out.println("Ingen aftale fundet på denne tid.");
+                            }
+                        } catch (ParseException e) {
+                            System.out.println("Ugyldig tid indtastet.");
+                        }
+                        break;
+                    case 3:
+                        // Se aftalte tider
+                        System.out.println(Tider.listeMedAftaler);
+                        break;
+                    case 4:
+                        // Kundehistorik
+                        break;
+
+                    case 5:
+                        // registrer betaling
+                        System.out.println("Vælg en aftale for at markere som betalt");
+                        for (int i = 0; i < Tider.listeMedAftaler.size(); i++) {
+                            System.out.println((i + 1) + ". " + Tider.listeMedAftaler.get(i).toString());
+                        }
+                        int betaltIndex = scanner.nextInt();
+                        if (betaltIndex > 0 && betaltIndex <= Tider.listeMedAftaler.size()) {
+                            Tider.listeMedAftaler.get(betaltIndex - 1).setBetalt(true);
+                            System.out.println("Aftale markeret som betalt.");
+                        } else {
+                            System.out.println("Ugyldigt nummer.");
+                        }
+                        break;
+                    default:
+                        System.out.println("Dette er ikke en mulighed, indtast gyldig værdi\n");
+                }
+            }
         System.out.println("Programmet lukker hav en god dag");
     }
 }
