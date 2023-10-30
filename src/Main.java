@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println();
-        System.out.println("God dag, Harry, Harriet og Revisor");
+        System.out.println("Goddag, Harry, Harriet og Revisor");
         System.out.println("Indtast venligst adgangskode");
         final Scanner scanner = new Scanner(System.in);
         String adgangskode=scanner.nextLine();
