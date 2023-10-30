@@ -138,28 +138,33 @@ class aftale{
 
     public Date getTime(Scanner scanner) {
         Date t = null;
-        try {
-            SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
-            System.out.println("Indtast tid (f.eks. 12:30)");
-            String input = getInput(scanner);
-            t = dt.parse(input);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        while(true) {
+            try {
+                SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
+                System.out.println("Indtast tid (f.eks. 12:30)");
+                String input = getInput(scanner);
+                t = dt.parse(input);
+                return t;
+            } catch (ParseException exception) {
+                System.out.println("Ikke gyldigt input");
+            }
         }
-        return t;
+
     }
 
     public Date getDate(Scanner scanner) {
         Date t = null;
-        try {
-            SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-            System.out.println("Indtast dato (f.eks. 01-10-2023)");
-            String input = getInput(scanner);
-            t = ft.parse(input);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        while (true) {
+            try {
+                SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
+                System.out.println("Indtast dato (f.eks. 01-10-2023)");
+                String input = getInput(scanner);
+                t = ft.parse(input);
+                return t;
+            } catch (ParseException exception) {
+                System.out.println("Ikke gyldigt input");
+            }
         }
-        return t;
     }
 
     public String getInput(Scanner scanner) {
