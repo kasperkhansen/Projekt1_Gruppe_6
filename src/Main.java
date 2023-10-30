@@ -11,14 +11,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println();
         System.out.println("Goddag, Harry, Harriet og Revisor");
-        System.out.println("Indtast venligst adgangskode");
         final Scanner scanner = new Scanner(System.in);
-        String adgangskode=scanner.nextLine();
-        while (!adgangskode.equals("hairyharry")) {
-            System.out.println("Adgangskode er forkert. Prøv igen");
-            adgangskode=scanner.nextLine();
-        }
-        while (adgangskode.equals("hairyharry"))
             while (true){
                 System.out.println();
                 System.out.println("Vælg ønsket handling!");
@@ -71,6 +64,17 @@ public class Main {
                         break;
                     case 4:
                         // Kundehistorik
+                        System.out.println("Venligst indtast adgangskode");
+                        String adgangskode=scanner.next();
+                        while (!adgangskode.equals("hairyharry")) {
+                            System.out.println("Adgangskode er forkert. Prøv igen");
+                            adgangskode=scanner.next();
+                            break;
+                        }
+                        while (adgangskode.equals("hairyharry")) {
+                            System.out.println(Tider.listeMedAftaler);
+                            break;
+                        }
                         break;
 
                     case 5:
