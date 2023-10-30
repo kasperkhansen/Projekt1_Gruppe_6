@@ -2,7 +2,6 @@
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -29,7 +28,7 @@ public class Main {
 
                 switch(indtastning) {
                     case 1:
-                        Tider.listeMedAftaler.add(new aftale());
+                        Tider.listeMedAftaler.add(new Aftale());
                         // opret aftale
                         break;
 
@@ -41,8 +40,8 @@ public class Main {
                         SimpleDateFormat dt = new SimpleDateFormat("HH:mm");
                         try {
                             Date sletTid = dt.parse(sletTidString);
-                            aftale aftaleToRemove = null;
-                            for (aftale a : Tider.listeMedAftaler) {
+                            Aftale aftaleToRemove = null;
+                            for (Aftale a : Tider.listeMedAftaler) {
                                 if (a.dato.getHours() == sletTid.getHours() && a.dato.getMinutes() == sletTid.getMinutes()) {
                                     aftaleToRemove = a;
                                     break;
@@ -60,7 +59,7 @@ public class Main {
                         break;
                     case 3:
                         // Se aftalte tider
-                        System.out.println(Tider.listeMedAftaler);
+                        Tider.print(false);
                         break;
                     case 4:
                         // Kundehistorik
@@ -72,7 +71,7 @@ public class Main {
                             break;
                         }
                         while (adgangskode.equals("hairyharry")) {
-                            System.out.println(Tider.listeMedAftaler);
+                            Tider.print(true);
                             break;
                         }
                         break;
@@ -99,20 +98,20 @@ public class Main {
     }
 }
 //----------------------------------------------------------------------------------------------------------------------
-class aftale{
+class Aftale {
     String navn;
     double pris;
     Date dato;
     boolean betalt;
 
-    public aftale(Date nyAftale, String navn, double pris) {
+    public Aftale(Date nyAftale, String navn, double pris) {
         this.dato = nyAftale;
         this.navn = navn;
         this.pris = pris;
     }
 
 
-    public aftale() {
+    public Aftale() {
         final Scanner scanner = new Scanner(System.in);
 
         //get date
@@ -173,24 +172,39 @@ class aftale{
 
     @Override
     public String toString() {
-        return dato + " " + navn + " " + pris + " " + (betalt ? "Betalt" : "Ikke Betalt");
+        return dato + " " + navn + " " + pris;
     }
+
+    public String toString(boolean visBetalte) {
+        if (visBetalte) {
+            return dato + " " + navn + " " + pris + " " + (betalt ? "Betalt" : "Ikke Betalt");
+        }
+        else {
+            return dato + " " + navn + " " + pris;
+        }
+    }
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-class Tider extends aftale {
+class Tider extends Aftale {
 
     public void setNyAftale(Date nyAftale) {
         this.dato = nyAftale;
     }
 
-    public static ArrayList<aftale> listeMedAftaler = new ArrayList<aftale>();
+    public static ArrayList<Aftale> listeMedAftaler = new ArrayList<Aftale>();
 
     Tider(Date nyAftale, Date tid, String navn, double pris) {
         super(nyAftale, navn, pris);
 
 
 
+    }
+    public static void print(boolean visBetaling) {
+        for (Aftale aftale: listeMedAftaler) {
+            System.out.println(aftale.toString(visBetaling));
+        }
     }
 }
 //----------------------------------------------------------------------------------------------------------------------
